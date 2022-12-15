@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tags %}
+
+{% block content %}
+<section class="text-center">
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+          background-image: url('{% static 'images/green-olives-in-oil.jpg' %}');
+          height: 300px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center
+
+
+          "></div>
+    <!-- Background image -->
+  
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-12">
+
+    <div class=" p-4 row" style="min-height: 400px;    ">
+        <h2 class="text-dark ">Description commande</h2>
+        {% comment %} <span><strong>ID:</strong>  {{ commande.id }}</span><br>
+        <span><strong>Name :</strong>{{ commande.nom }}</span><br>
+        <span><strong>QTE :</strong>{{ commande.qte }}</span><br> {% endcomment %}
+
+        <table class="col-6">
+            <tr>
+                {%  if user|has_group:"[labo,decideur,degustateur,transit,admin]" %}
+                <th scope="col">CODE</th>
+                <td class="bg-dark text-white ">{{ commande.code }}</td>
+                {% endif %}
+
+            </tr>
+            {%  if user|has_group:"[labo,decideur,customer,admin]" %}
+            <tr><th scope="col">FOURNISSEUR</th> <td>
+                    {{ commande.fournisseur.nom}}
+                    </td></tr>
+            {% endif %}
+            <tr><th scope="col">QTE</th><td>
+                {{ commande.qte}}
+            </td></tr>
+            <tr><th scope="col">CODEPile</th> <td>
+                {{ commande.code_pile}}
+            </td></tr>
+            <tr><th scope="col">CELLAGE</th> <td>
+                {{ commande.cellage}}
+            </td></tr>
+            <tr><th scope="col">PRESENCE</th><td>
+                {% if commande.presence == True %}
+                    Présent
+                    {% else %}
+                    Non présent
+                {% endif %}
+            </td></tr>
+            <tr><th scope="col">DATE</th>  <td>
+                {{ commande.dateEchantion }}
+            </td></tr>
+            <tr><th scope="col">STATUS</th>{% if commande.status == "en attente" %}
+            <td class="bg-warning text-white">
+            {% elif commande.status == "validé"%}
+            <td class="bg-success text-white">
+            {% else %}
+            <td class="bg-danger text-white">
+            {% endif %}
+
+                  {{ commande.status|upper }}
+            
+            </td></tr>
+            {% if user|has_group:"[labo,admin]" %}
+            <tr><th scope="col">NOTE</th><td>
+                {% if user|has_group:"[labo,admin,decideur]" %}
+                    {{ commande.note }}
+                {% endif %}
+            </td></tr>
+           
+            {% endif %}    
+            {% if commande.degustateurs != None %}
+            
+            {% for degNote in commande.degustateursnotes_set.all %}
+            <tr>
+                <th scope="col">{{ degNote.user.first_name  }} {{ degNote.user.last_name }} </th>
+            <td>
+                    {{ degNote.note }}
+            </td>
+
+            </tr>
+            {% endfor %}
+            {% endif %}
+  
+                    </table>
+
+                    {% if user|has_group:"[labo,admin,decideur]" %}        <div class="col-5">
+            <form method="post">
+            <label>
+                Note
+            </label>
+            {% csrf_token %}
+            <textarea class="form-control" name="note" rows="5" palaceholder="tapper votre note !!!!">
+                
+            </textarea>
+            <input type="submit" class="offset-8 mt-4 btn btn-dark" value="Ajouter une note"> 
+        </form>
+
+        {% endif %}
+        </div>
+                    <div>
+
+    </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </section>
+
+{% endblock %}

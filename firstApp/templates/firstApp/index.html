@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>GLSI3</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <h2 class="title-red">First App</h2>
+    <h1 class="content-green">Hello,{{name}} Le {{ date|date:"D d M Y" }}</h1>
+
+    <ul>
+        <li><a href="{% url 'Article1' %}">a1</a></li>
+        <li><a href="{% url 'produits' %}">a2</a></li>
+        <li><a href="{% url 'Article3' %}">a3</a></li>
+        
+    </ul>
+</body>
+
+</html>

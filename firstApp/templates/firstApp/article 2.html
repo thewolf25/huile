@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tags %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Article List
+{% endblock  %}
+
+{% block content %}
+<section class="text-center">
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+          background-image: url('{% static 'images/green-olives-in-oil.jpg' %}');
+          height: 300px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center
+
+
+          "></div>
+    <!-- Background image -->
+  
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+
+    <ul>
+    </ul>
+
+    <div style="width: 60%; margin: auto;background: hsla(0, 0%, 100%, 0.8);
+    backdrop-filter: blur(30px);" class="card p-4">
+
+    {% if articleList.form.errors %}
+    <div class="alert alert-danger">
+        {{ articleList.form.errors }}
+    </div>
+    {% endif %}
+            <h2 class="text-dark text-center">List of article</h2>
+
+        <form method="get" class="form-inline justify-content-center">
+            <label>Nom </label>   
+            {{ articleList.form.nom__icontains }}
+            <label>Categorie</label>
+            {{ articleList.form.type }}
+            <input  class="btn btn-dark mt-3 offset-10 " type="submit" value="filtrer" />
+        </form>
+    </div>
+    {% if articleList.qs  %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">QTE</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tr>
+        {% for i in articles %}
+
+        <tr>
+            <th scope="row">
+                <a href="{% url 'singleArticle' i.id %}"> {{  i.id }}</a>
+            </th>
+            <td>
+                {{ i.nom}}
+            </td>
+            <td>
+                {{ i.qte}}
+            </td>
+
+            {% if i.status == "en attente" %}
+            <td class="bg-warning text-white">
+            {% elif i.status == "validé"%}
+            <td class="bg-success text-white">
+            {% else %}
+            <td class="bg-danger text-white">
+            {% endif %}
+
+                  {{ i.status|upper }}
+            
+            </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+    {% comment %} {% if is_paginated %}
+  {% if articles.has_previous %}
+    <a href="?{% param_replace page=1 %}">First</a>
+    {% if articles.previous_page_number != 1 %}
+      <a href="?{% param_replace page=articles.previous_page_number %}">Previous</a>
+    {% endif %}
+  {% endif %}
+
+  Page {{ articles.number }} of {{ paginator.num_pages }}
+
+  {% if articles.has_next %}
+    {% if articles.next_page_number != paginator.num_pages %}
+      <a href="?{% param_replace page=articles.next_page_number %}">Next</a>
+    {% endif %}
+    <a href="?{% param_replace page=paginator.num_pages %}">Last</a>
+  {% endif %}
+
+  <p>Objects {{ articles.start_index }}—{{ articles.end_index }}</p>
+{% endif %} {% endcomment %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if articles.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ articles.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ articles.number }} of {{ articles.paginator.num_pages }}.
+        </span>
+
+        {% if articles.has_next %}
+            <a href="?{% param_replace page=articles.next_page_number %}">next</a>
+            <a href="?{% param_replace page=articles.paginator.num_pages %}" >last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+    {% else %}
+    <div class="alert alert-danger">
+        Aucun Produit trouvée !!!
+    </div>
+    {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+    
+{% endblock  %}

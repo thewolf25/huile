@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="text-center">
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+          background-image: url('{% static 'images/green-olives-in-oil.jpg' %}');
+          height: 300px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center
+
+
+          "></div>
+    <!-- Background image -->
+  
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-10">
+
+
+                <div style="width: 80%; margin: auto;background: hsla(0, 0%, 100%, 0.8);
+                backdrop-filter: blur(30px);" class="card p-4">
+
+                        {% if articleList.form.errors %}
+                        <div class="alert alert-danger">
+                            {{ articleList.form.errors }}
+                        </div>
+                        {% endif %}
+
+                        <h2 class="text-dark text-center my-4"> Notes dégustateur   </h2>
+                        {% if not commande %}
+                            <div class="alert alert-danger">
+                                Aucune commande correspond au code {{ code }}
+                            </div>
+                        {% else %}
+
+                        <table>
+                            <form action="{% url 'createDegustateurNote' %}" method="post">
+                                {% csrf_token %}
+                            <tr>
+                                <th scope="col">
+                                    Code commande : 
+                                </th>
+                                <td>
+                                    <input type="text" class="form-control disabled"  disabled value="{{ code }}">
+                                    <input type="hidden" name="code" value="{{ code }}">
+                                </td>
+                            </tr>
+                            
+
+                                <tr>
+                                <th scope="col">
+                                    Note :
+                                </th>
+                                <td>
+                                    <textarea type="text" class="form-control mt-3" rows="4" name="note" placeholder="Tapper votre note"> </textarea>
+                                </td>
+                                
+                            </tr>
+
+                            <tr>
+                                <th scope="">
+                                </th>
+
+                                <td>
+                                    <button type="submit" class="offset-9 mt-3 btn btn-dark"> Ajouter note</button>
+                                </td>
+                            </tr>
+                        </form>
+                        
+                        </table>
+                        {% endif %}
+                        
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
+</section>
+
+{% endblock  %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Commandes
+{% endblock %}
+
+{% block content %}
+
+<section class="text-center">
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+          background-image: url('{% static 'images/green-olives-in-oil.jpg' %}');
+          height: 300px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center
+
+
+          "></div>
+    <!-- Background image -->
+  
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+
+
+              <h2> Ajouter une commande </h2>
+                {% if commandeForm.errors %}
+                <div class="alert alert-danger">
+                    {{ commandeForm.errors }}
+                </div>
+                {% endif %}
+                <!-- content -->
+                    <form method="post" class="custom_flex" >
+                      
+                    {% csrf_token %}
+                   {{ commandeForm.as_p}}
+                   <div>
+                    <button type="submit" class="btn btn-dark "> Ajouter Commande</button>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Ajouter Fournisseur</button>
+                   </div>
+                </form>
+
+
+                <!-- end content-->
+    </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </section>
+
+
+        
+        <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter Fournisseur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                {% if fournisseurForm.errors %}
+                <div class="alert alert-danger">
+                    {{ fournisseurForm.errors }}
+                </div>
+                {% endif %}
+                 <form  method="post" action="{% url 'ajoutFournisseur' %}">
+            {% csrf_token %}
+           {{ fournisseurForm.as_p}}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-dark"> Ajouter Fournisseur</button>
+            </div>
+            </form>
+
+            </div>
+          </div>
+        </div>
+
+<!-- Large modal -->
+
+{% comment %} <div class="modal fade bd-example-modal-lg" id="ajourFournisseur" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form method="post" action="{% url 'ajoutFournisseur' %}">
+            {% csrf_token %}
+           {{ fournisseurForm.as_p}}
+            <button type="submit" class="btn btn-dark"> Ajouter Fournisseur</button>
+            </form>
+    </div>
+  </div>
+</div> {% endcomment %}
+{% endblock %}
