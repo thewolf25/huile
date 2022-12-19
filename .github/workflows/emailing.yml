@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Send mail
-      uses: dawidd6/action-send-mail@v3
+      uses: dawidd6/action-send-mail@v3.7.1
+
       with:
         connection_url: smtp://nasrimehdi96@gmail.com:MehdiCc24727336$@smtp.gmail.com:465
         secure: true
