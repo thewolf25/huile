@@ -8,7 +8,7 @@ jobs:
   send_email:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/email
+      - uses: actions/email@v2
         with:
           to: mehdinasri232@gmail.com
           subject: A new commit has been pushed to the repository
