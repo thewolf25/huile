@@ -31,7 +31,7 @@ jobs:
         server_address: smtp.gmail.com
         server_port: 465
         secure: true
-        username: nasrimehdi96
+        username: nasrimehdi96@gmail.com
         password: MehdiCc24727336$
         subject: Github Actions job result
         to: mehdinasri232@gmail.com
