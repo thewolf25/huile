@@ -8,13 +8,12 @@ jobs:
   send_email:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Send email
-        uses: peter-evans/email-action@v1
+      - uses: actions/email@v2
         with:
-          to: nasrimehdi96@gmail.com
-          subject: New pull request opened
-          body: A new pull request has been opened in the repository.
-          
+          to: mehdinasri232@gmail.com
+          subject: A new commit has been pushed to the repository
+          body: A new commit has been pushed to the repository. Check it out at ${{ github.event.head_commit.url }}
+          smtp-server: smtp.gmail.com
+          smtp-port: 587
+          smtp-username: nasrimehdi96@gmail.com
+          smtp-password: MehdiCc24727336$
