@@ -8,12 +8,19 @@ jobs:
   send_email:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/email@v2
-        with:
-          to: mehdinasri232@gmail.com
-          subject: A new commit has been pushed to the repository
-          body: A new commit has been pushed to the repository. Check it out at ${{ github.event.head_commit.url }}
-          smtp-server: smtp.gmail.com
-          smtp-port: 587
-          smtp-username: nasrimehdi96@gmail.com
-          smtp-password: MehdiCc24727336$
+    - name: Send mail
+      uses: dawidd6/action-send-mail@v3
+      with:
+        connection_url: smtp://nasrimehdi96@gmail.com:MehdiCc24727336$@smtp.gmail.com:465
+        server_address: smtp.gmail.com
+        server_port: 465
+        secure: true
+        username: nasrimehdi96@gmail.com
+        password: MehdiCc24727336$
+        subject: Github Actions job result
+        to: mehdinasri232@gmail.com
+        from: Luke Skywalker # <user@example.com>
+        body: Build job of ${{github.repository}} completed successfully!
+        ignore_cert: true
+        convert_markdown: true
+        priority: low
