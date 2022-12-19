@@ -4,7 +4,8 @@ on:
  pull_request:
     branches: [ "main" ]
 jobs:
-  build:
+  send_email:
+    runs-on: ubuntu-latest
     steps:
     - name: Send mail
       uses: dawidd6/action-send-mail@v3
@@ -21,5 +22,5 @@ jobs:
         ignore_cert: true
         convert_markdown: true
         priority: low
-   
- 
+
+
