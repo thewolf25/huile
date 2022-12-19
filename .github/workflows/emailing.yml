@@ -14,7 +14,7 @@ jobs:
       - name: Send email
         uses: peter-evans/email-action@v1
         with:
-          to: someone@example.com
+          to: nasrimehdi96@gmail.com
           subject: New pull request opened
           body: A new pull request has been opened in the repository.
-          template: templates/pull-request-opened.html
+          
