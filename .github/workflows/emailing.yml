@@ -1,0 +1,25 @@
+name: Django CI
+
+on:
+ pull_request:
+    branches: [ "main" ]
+jobs:
+  build:
+    steps:
+    - name: Send mail
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        secure: true
+        username: nasrimehdi96@gmail.com
+        password: MehdiCc24727336$
+        subject: Github Actions job result
+        to: mehdinasri232@gmail.com
+        from: Luke Skywalker # <user@example.com>
+        body: Build job of ${{github.repository}} completed successfully!
+        ignore_cert: true
+        convert_markdown: true
+        priority: low
+   
+ 
