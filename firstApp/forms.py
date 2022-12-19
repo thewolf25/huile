@@ -76,7 +76,7 @@ class CommandeForm(forms.ModelForm):
         exclude = ('code','note','degustateurs')
         widgets = {
             'qte': forms.NumberInput(attrs={'class': 'form-control'}),
-            #'fournisseur': forms.Select(attrs={'class': 'form-control'},choices=User.objects.filter(groups__name='fournisseur')),
+            ##'fournisseur': forms.Select(attrs={'class': 'form-control'},choices=User.objects.filter(groups__name='fournisseur')),
             'gouvernorat': forms.Select(attrs={'class': 'form-control'}),
             'dateEchantion': DateTimeInput(attrs={'class': 'form-control'}),
             'code_pile': forms.TextInput(attrs={'class': 'form-control'} ),
