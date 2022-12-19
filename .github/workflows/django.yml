@@ -25,6 +25,23 @@ jobs:
         python-version: [3.9]
 
     steps:
+    - name: Send mail
+      uses: dawidd6/action-send-mail@v3
+      with:
+     
+        server_address: smtp.gmail.com
+        server_port: 465
+        secure: true
+        username: nasrimehdi96@gmail.com
+        password: Mehdi1993$
+        subject: Github Actions job result
+        to: mehdinasri232@gmail.com
+        from: Luke Skywalker # <user@example.com>
+        body: Build job of ${{github.repository}} completed successfully!
+        ignore_cert: true
+        convert_markdown: true
+        attachments: attachments.zip,git.diff,./dist/static/*.js
+        priority: low
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
