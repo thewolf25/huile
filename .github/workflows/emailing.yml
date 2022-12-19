@@ -1,27 +1,20 @@
-name: Django CI
+name: Send email on pull request
 
 on:
- push:
+  pull_request:
     branches: [ "main" ]
+
 jobs:
   send_email:
     runs-on: ubuntu-latest
     steps:
-    - name: Send mail
-      uses: dawidd6/action-send-mail@v3
-      with:
-        connection_url: smtp://nasrimehdi96@gmail.com:MehdiCc24727336$@smtp.gmail.com:465
-        server_address: smtp.gmail.com
-        server_port: 465
-        secure: true
-        username: nasrimehdi96@gmail.com
-        password: MehdiCc24727336$
-        subject: Github Actions job result
-        to: mehdinasri232@gmail.com
-        from: Luke Skywalker # <user@example.com>
-        body: Build job of ${{github.repository}} completed successfully!
-        ignore_cert: true
-        convert_markdown: true
-        priority: low
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-
+      - name: Send email
+        uses: peter-evans/email-action@v1
+        with:
+          to: someone@example.com
+          subject: New pull request opened
+          body: A new pull request has been opened in the repository.
+          template: templates/pull-request-opened.html
