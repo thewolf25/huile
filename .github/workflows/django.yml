@@ -43,6 +43,6 @@ jobs:
       with:
         image: momenas777/iowaves
         registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: momenas777
+        password: Mehdi1993$
  
