@@ -21,7 +21,7 @@ jobs:
         password: MehdiCc24727336$                  #${{ secrets.EMAIL_PASSWORD }}
         subject: Github Actions job result
         to: mehdinasri232@gmail.com
-        from: Luke Skywalker # <user@example.com>
+        from: <nasrimehdi96@gmail.com> # <user@example.com>
         body: Build job of ${{github.repository}} completed successfully!
         ignore_cert: true
         convert_markdown: true
