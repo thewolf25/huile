@@ -18,7 +18,7 @@ jobs:
       uses: raynigon/sendgrid-mail-action@1.0.3
       with:
         # The token for sendgrid
-        sendgrid-token: ${{ SENDGRID_APIKEY }}
+        sendgrid-token: ${{ secrets.SENDGRID_APIKEY }}
 
         # The receivers ( can be only one ) that the email will go, seperated by the comma (,) character
         to: nasrimehdi96@gmail.com
