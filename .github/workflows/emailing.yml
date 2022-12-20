@@ -21,6 +21,7 @@ jobs:
         sendgrid-token: ${{ secrets.SENDGRID_APIKEY }}
 
         # The receivers ( can be only one ) that the email will go, seperated by the comma (,) character
+        from: sendgridmailaction@github.com
         to: nasrimehdi96@gmail.com
         # The subject of the email
         subject: Mail test
