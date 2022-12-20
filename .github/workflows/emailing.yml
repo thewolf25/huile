@@ -31,4 +31,4 @@ jobs:
         # The body of the mail as HTML
         html: "<h1>Helloo </h1>"
         # Comma seperated list of files which should be attached to the e-mail
-        attachments: "file://README.md"
+        attachments: ${{ github.workspace }}/README.md
