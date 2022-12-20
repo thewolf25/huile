@@ -12,20 +12,23 @@ jobs:
     - uses: actions/checkout@v2
     #- name: Send mail
      
-    - name: Send email
-      uses: devellany/send-mailer@v1.0.2
+    - name: SendGrid E-Mail Action
+      # You may pin to the exact commit or the version.
+      # uses: raynigon/sendgrid-mail-action@cf4019e7d1ec5a98933305a65db873a17e4880b5
+      uses: raynigon/sendgrid-mail-action@1.0.3
       with:
-        host: smtp.google.com
-        # Optional port (defaults to 465)
-        port: 465
-        account: ${{secrets.EMAIL_USERNAME }}
-        password: ${{secrets.EMAIL_PASSWORD }}
-        sender: devellany
-        from: ${{secrets.EMAIL_USERNAME }}
-        to: devellay@dico.me
-        subject: mail title.
-        body: your messages.
-        # Optional content type (defaults to text/plain)
-        contentType: text/plain
-        # Optional attachment files (JSON type. require property 'path')
-        attachments: '[{"path":"README.md"}]'
+        # The token for sendgrid
+        sendgrid-token: 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
+
+        # The receivers ( can be only one ) that the email will go, seperated by the comma (,) character
+        to: nasrimehdi96@gmail.com
+        # The email that will be shown as sender
+        from: mehdinasri232@gmail.com
+        # The subject of the email
+        subject: Mail test
+        # The body of the mail as Plain Text
+        text: this email is to test mail functionnality
+        # The body of the mail as HTML
+        html: "<h1>Helloo </h1>"
+        # Comma seperated list of files which should be attached to the e-mail
+        attachments: "file://README.md"
