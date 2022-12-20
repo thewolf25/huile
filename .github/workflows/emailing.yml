@@ -22,8 +22,6 @@ jobs:
 
         # The receivers ( can be only one ) that the email will go, seperated by the comma (,) character
         to: nasrimehdi96@gmail.com
-        # The email that will be shown as sender
-        from: mehdinasri232@gmail.com
         # The subject of the email
         subject: Mail test
         # The body of the mail as Plain Text
