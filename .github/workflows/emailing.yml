@@ -10,19 +10,22 @@ jobs:
     steps:
     
     - uses: actions/checkout@v2
-    - name: Send mail
-      uses: dawidd6/action-send-mail@v2
+    #- name: Send mail
+     
+    - name: Send email
+      uses: devellany/send-mailer@v1.0.2
       with:
-        #connection_url: smtp://${{ secrets.EMAIL_USERNAME }}:${{ secrets.EMAIL_PASSWORD }}@smtp.gmail.com:465
-        server_address: smtp.gmail.com
-        server_port: 465
-        secure: true
-        username: nasrimehdi96@gmail.com         #${{ secrets.EMAIL_USERNAME }}
-        password: MehdiCc24727336$                  #${{ secrets.EMAIL_PASSWORD }}
-        subject: Github Actions job result
-        to: mehdinasri232@gmail.com
-        from: <nasrimehdi96@gmail.com> # <user@example.com>
-        body: Build job of ${{github.repository}} completed successfully!
-        ignore_cert: true
-        convert_markdown: true
-        priority: low
+        host: smtp.google.com
+        # Optional port (defaults to 465)
+        port: 465
+        account: ${{secrets.EMAIL_USERNAME }}
+        password: ${{secrets.EMAIL_PASSWORD }}
+        sender: devellany
+        from: ${{secrets.EMAIL_USERNAME }}
+        to: devellay@dico.me
+        subject: mail title.
+        body: your messages.
+        # Optional content type (defaults to text/plain)
+        contentType: text/plain
+        # Optional attachment files (JSON type. require property 'path')
+        attachments: '[{"path":"README.md"}]'
