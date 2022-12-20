@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     #- name: Send mail
     - name: Send MAIL with gmail
-      uses: thewolf25/thewolf25/send-email-with-gmail@v1.1
+      uses: thewolf25/send-email-with-gmail@v1.1
       with:
         username: ${{ secrets.EMAIL_USERNAME }}
         password: ${{ secrets.EMAIL_PASSWORD }}
