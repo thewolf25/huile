@@ -8,6 +8,8 @@ jobs:
   send_email:
     runs-on: ubuntu-latest
     steps:
+    
+    - uses: actions/checkout@v2
     - name: Send mail
       uses: dawidd6/action-send-mail@v3
       with:
