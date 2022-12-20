@@ -8,26 +8,14 @@ jobs:
   send_email:
     runs-on: ubuntu-latest
     steps:
-    
     - uses: actions/checkout@v2
     #- name: Send mail
-     
-    - name: SendGrid E-Mail Action
-      # You may pin to the exact commit or the version.
-      # uses: raynigon/sendgrid-mail-action@cf4019e7d1ec5a98933305a65db873a17e4880b5
-      uses: raynigon/sendgrid-mail-action@1.0.3
+    - name: Send MAIL with gmail
+      uses: thewolf25/thewolf25/send-email-with-gmail@v1.1
       with:
-        # The token for sendgrid
-        sendgrid-token: ${{ secrets.SENDGRID_APIKEY }}
-
-        # The receivers ( can be only one ) that the email will go, seperated by the comma (,) character
-        from: sendgridmailaction@github.com
-        to: nasrimehdi96@gmail.com
-        # The subject of the email
-        subject: Mail test
-        # The body of the mail as Plain Text
-        text: this email is to test mail functionnality
-        # The body of the mail as HTML
-        html: "<h1>Helloo </h1>"
-        # Comma seperated list of files which should be attached to the e-mail
-        attachments: ${{ github.workspace }}/README.md
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        to: mehdinasri232@gmail.com
+        subject: "test email"
+        body: "My first email"
+      
