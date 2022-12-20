@@ -17,8 +17,8 @@ jobs:
         server_address: smtp.gmail.com
         server_port: 465
         secure: true
-        username: ${{ secrets.EMAIL_USERNAME }}
-        password: ${{ secrets.EMAIL_PASSWORD }}
+        username: nasrimehdi96@gmail.com         #${{ secrets.EMAIL_USERNAME }}
+        password: MehdiCc24727336$                  #${{ secrets.EMAIL_PASSWORD }}
         subject: Github Actions job result
         to: mehdinasri232@gmail.com
         from: Luke Skywalker # <user@example.com>
